@@ -1,0 +1,94 @@
+# PAT
+ #include <stdio.h>
+ #include <string.h>
+ #include <stdlib.h>
+ #include <math.h>
+struct stack {       //并集 
+	int data;
+	int parent;
+};
+
+
+
+int main()        
+{  
+   int n;
+   int i=0;
+   scanf("%d",&n);
+   struct stack net[n];    
+   for(i=0;i<n;i++){
+   	 net[i].data=i+1;
+   	 net[i].parent=-1;
+   }
+   getchar();
+   char c;
+   	int a,b;
+	scanf("%c",&c);
+   while(c !='S'){
+   	  
+   	  if(c=='C'){
+   	  	scanf(" %d %d",&a,&b);
+   	    a=a-1;
+   	    b=b-1;
+   	    while(net[a].parent>=0){
+   	    a=net[a].parent; 
+        }
+       while(net[b].parent>=0){
+   	   b=net[b].parent;
+        }
+      if(a==b){
+      	printf("yes\n");
+      }
+      else{
+      	printf("no\n");
+      }
+   	  }
+   	  else if(c=='I'){
+   	     scanf(" %d %d",&a,&b);
+   	        a=a-1;
+   	        b=b-1;
+			if(net[a].parent>=0){
+				 while(net[a].parent>=0){
+   	           a=net[a].parent; 
+        }
+			}
+			if(net[b].parent>=0){
+				 while(net[b].parent>=0){
+   	           b=net[b].parent; 
+        }
+			}
+			if a==b //不用做下面的 
+			if(net[a].parent<0 && net[b].parent<0){
+		 if(net[a].parent<net[b].parent){
+			net[b].parent=a;
+			net[a].parent--;
+		   }
+		 else{
+			net[a].parent=b;
+			net[b].parent--;
+		   }
+	    }
+	   
+	    //n=n-1;
+	  }
+   
+   getchar();
+   scanf("%c",&c);
+   }
+   //if (n<=1){
+   //	printf("The network is connected.");
+   //}
+   //else{
+   //	printf("There are %d components.",n);
+  // } 
+   
+   for(i=0;i<n;i++){
+   	 printf("%d ",net[i].data);
+   	  printf("%d\n",net[i].parent);
+   }
+   
+   
+   return 0;
+   
+   
+   }
