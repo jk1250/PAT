@@ -8,8 +8,6 @@ struct stack {       //并集
 	int parent;
 };
 
-
-
 int main()        
 {  
    int n;
@@ -86,9 +84,5 @@ int main()
    	 printf("%d ",net[i].data);
    	  printf("%d\n",net[i].parent);
    }
-   
-   
    return 0;
-   
-   
    }
